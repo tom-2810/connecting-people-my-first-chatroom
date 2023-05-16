@@ -1,0 +1,33 @@
+{
+  "name": "connecting-people-my-first-chatroom",
+  "version": "1.0.0",
+  "description": "Chatroom that follows the styleguide of Vervoerregio Amsterdam",
+  "type": "module",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tom-2810/connecting-people-my-first-chatroom.git"
+  },
+  "author": "Tom Poortman (tom.poortman@hva.nl)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tom-2810/connecting-people-my-first-chatroom/issues"
+  },
+  "homepage": "https://github.com/tom-2810/connecting-people-my-first-chatroom#readme",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "socket.io": "^4.6.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
