@@ -13,7 +13,7 @@ const port = process.env.PORT || 8000
 app.set('view engine', 'ejs')
 app.set('views', './views')
 
-// app.use(express.static(path.resolve('public')))
+app.use(express.static(path.resolve('public')))
 
 // Routing met fallback naar 404 pagina
 app.get('/', (req, res) => res.render('index'))
