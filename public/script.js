@@ -30,5 +30,3 @@ function addMessage(message) {
   messages.appendChild(Object.assign(document.createElement('li'), { textContent: message }))
   messages.scrollTop = messages.scrollHeight
 }
-
-console.log("test")

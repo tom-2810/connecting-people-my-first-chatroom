@@ -10,14 +10,7 @@ const ioServer = new Server(http)
 const port = process.env.PORT || 8000
 
 // Serveer client-side bestanden
-app.set('view engine', 'ejs')
-app.set('views', './views')
-
 app.use(express.static(path.resolve('public')))
-
-// Routing met fallback naar 404 pagina
-app.get('/', (req, res) => res.render('index'))
-app.get('*', (req, res) => res.render('404'))
 
 // Start de socket.io server op
 ioServer.on('connection', (client) => {
