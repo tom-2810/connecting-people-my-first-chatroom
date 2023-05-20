@@ -16,7 +16,8 @@ app.set('views', './views')
 app.use(express.static(path.resolve('public')))
 
 // Routing met fallback naar 404 pagina
-app.get('/', (req, res) => res.render('index'))
+app.get('/', (req, res) => res.render('start'))
+app.get('/chatroom', (req, res) => res.render('chatroom'))
 app.get('*', (req, res) => res.render('404'))
 
 // Start de socket.io server op

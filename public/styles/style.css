@@ -1,0 +1,282 @@
+/*
+===============================
+📜 FONTS
+===============================
+*/
+
+@font-face {
+    font-family: "Fira Sans Medium";
+    font-style: normal;
+    font-weight: normal;
+    src: url(/fonts/FiraSans-Medium.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Fira Sans Regular";
+    font-style: normal;
+    font-weight: normal;
+    src: url(/fonts/FiraSans-Regular.ttf) format("truetype");
+}
+
+/*
+===============================
+✨ VARIABLES
+===============================
+*/
+
+:root {
+    --default-width: 90vw;
+    --max-width: 95rem;
+    --small-size: .5rem;
+    --medium-size: 1.2rem;
+    --large-size: 1.7rem;
+    --xlarge-size: 3rem;
+    --xxlarge-size: 8rem;
+    --small-radius: 4px;
+    --medium-radius: 8px;
+    --large-radius: 16px;
+    --c-achtergrond: #ffffff;
+    --c-schaduw: 0px 0px 40px rgba(0, 0, 0, 0.025);
+    --c-schaduw-hover: 0px 0px 40px rgba(0, 0, 0, 0.075);
+    --c-tekst: rgb(70, 70, 70);
+    --c-container: #E6E6E6;
+    --c-huistijl-magenta: linear-gradient(123.52deg, var(--c-huisstijl-magenta-plain) 0%, #ff158e 100%);
+    --c-huisstijl-magenta-plain: #eb004e;
+}
+
+/*
+===============================
+🌓 DARK-MODE
+===============================
+*/
+
+[data-theme="dark"] {
+    --c-achtergrond: #212121;
+    --c-header-achtergrond: #2C2C2C;
+    --c-tekst: #ffffff;
+    --c-huisstijl-magenta-plain: #ff0055;
+}
+
+/*
+===============================
+🐪 DRY CODE
+===============================
+*/
+
+:is(.my-profile, .avatar) .status {
+    box-sizing: content-box;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: var(--small-size);
+    height: var(--small-size);
+    border: 2px solid var(--c-achtergrond);
+    border-radius: 50%;
+    z-index: 2;
+}
+
+/*
+===============================
+💪 DEFAULT STYLING
+===============================
+*/
+
+html {
+    scroll-behavior: smooth;
+    font-family: Fira Sans Medium;
+}
+
+* {
+    scroll-margin: 23rem;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: var(--c-tekst);
+}
+
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    /* gap: var(--xlarge-size); */
+}
+
+:is(main) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: var(--default-width);
+    max-width: var(--max-width);
+    gap: var(--medium-size);
+}
+
+/*
+===============================
+🧩 PARTIALS
+===============================
+*/
+
+/* Header */
+
+header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: var(--small-size) 0;
+    border-bottom: 1px solid var(--c-container);
+}
+
+header .site-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: var(--default-width);
+    max-width: var(--max-width);
+}
+
+header .site-nav > a {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+}
+
+header .site-nav > a img {
+    width: 8rem;
+}
+
+header .site-nav nav {
+    display: flex;
+    flex-direction: row;
+    gap: var(--small-size);
+}
+
+header .site-nav nav > *, .avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--c-container);
+    border-radius: 50%;
+    background-color: var(--c-achtergrond);
+}
+
+header .site-nav nav :is(img, svg), .avatar svg {
+    box-sizing: content-box;
+    padding: var(--small-size);
+    width: var(--medium-size);
+    height: var(--medium-size);
+}
+
+header .site-nav nav svg, .avatar svg {
+    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.7));
+}
+
+header .site-nav nav .my-profile, .avatar {
+    position: relative;
+    background-color: #eb004e;
+}
+
+/* Footer */
+
+footer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: var(--small-size) 0;
+    border-top: 1px solid var(--c-container);
+}
+
+footer section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: var(--default-width);
+    max-width: var(--max-width);
+}
+
+/*
+===============================
+📄 PAGES
+===============================
+*/
+
+/* Start page */
+
+main.start form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: var(--medium-size);
+    gap: var(--medium-size);
+    border: 1px solid var(--c-container);
+    border-radius: var(--small-radius);
+}
+
+/* Chatroom page */
+
+main.chatroom {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-left: 1px solid var(--c-container);
+    border-right: 1px solid var(--c-container);
+}
+
+main.chatroom .all-members {
+    display: none;
+    height: 100%;
+    border-left: 1px solid var(--c-container);
+    padding: var(--medium-size);
+}
+
+main.chatroom .chat {
+    padding: var(--medium-size) 0;
+}
+
+main.chatroom .chat ul {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    list-style: none;
+    gap: var(--large-size);
+}
+
+main.chatroom .chat ul li {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+}
+
+main.chatroom .chat ul li .message {
+    width: 100%;
+}
+
+main.chatroom .chat ul li .message p {
+    padding: var(--small-size);
+    border: 1px solid var(--c-container);
+    border-radius: var(--small-radius);
+}
+
+main.chatroom .chat ul li.me {
+    margin-left: auto;
+}
+
+.avatar {
+    width: fit-content;
+    height: fit-content;
+}
+
+/*
+===============================
+💻 QUERIES
+===============================
+*/
+
+@media only screen and (min-width: 1300px) {
+    main.chatroom {
+    grid-template-columns: 1fr .2fr;
+    }
+    main.chatroom .all-members {
+        display: block;
+    }
+}
