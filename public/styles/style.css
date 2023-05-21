@@ -118,6 +118,14 @@ h2 {
     font-size: var(--medium-size);
 }
 
+.status {
+    background-color: red;
+}
+
+.online {
+    background-color: green;
+}
+
 /*
 ===============================
 🧩 PARTIALS
@@ -142,14 +150,14 @@ header .site-nav {
     max-width: var(--max-width);
 }
 
-header .site-nav > a {
+header .site-nav>a {
     display: flex;
     align-items: center;
     height: fit-content;
 }
 
-header .site-nav > a img {
-    width: 8rem;
+header .site-nav>a img {
+    height: var(--large-size);
 }
 
 header .site-nav nav {
@@ -158,7 +166,8 @@ header .site-nav nav {
     gap: var(--small-size);
 }
 
-header .site-nav nav > *, .avatar {
+header .site-nav nav>*,
+.avatar {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -167,18 +176,21 @@ header .site-nav nav > *, .avatar {
     background-color: var(--c-achtergrond);
 }
 
-header .site-nav nav :is(img, svg), .avatar svg {
+header .site-nav nav :is(img, svg),
+.avatar svg {
     box-sizing: content-box;
     padding: var(--small-size);
     width: var(--medium-size);
     height: var(--medium-size);
 }
 
-header .site-nav nav svg, .avatar svg {
+header .site-nav nav svg,
+.avatar svg {
     filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.7));
 }
 
-header .site-nav nav .my-profile, .avatar {
+header .site-nav nav .my-profile,
+.avatar {
     position: relative;
     background-color: #eb004e;
 }
@@ -204,52 +216,49 @@ main.start form {
 /* Chatroom page */
 
 main.chatroom {
-    display: grid;
-    grid-template-columns: 1fr;
-}
-
-main.chatroom .all-members {
-    display: none;
-    height: 100%;
-    border-left: 1px solid var(--c-container);
-    padding: var(--medium-size);
-}
-
-main.chatroom .chat {
     display: flex;
     flex-direction: column;
-    justify-content: end;
-    height: 100%;
-    padding: var(--medium-size) 0;
+    width: var(--default-width);
+    max-width: var(--max-width);
+    height: calc(100% - 3.35rem);
 }
 
-main.chatroom .chat ul {
+main.chatroom ul {
     display: flex;
     flex-direction: column;
     width: 100%;
     list-style: none;
     gap: var(--large-size);
+    overflow: auto;
+    scroll-behavior: smooth;
 }
 
-main.chatroom .chat ul li {
+main.chatroom ul li {
     display: flex;
     flex-direction: row;
     gap: var(--small-size);
     width: 70%;
 }
 
-main.chatroom .chat ul li .message {
+main.chatroom ul li .message {
     width: 100%;
 }
 
-main.chatroom .chat ul li .message p {
+main.chatroom ul li .message p {
     padding: var(--small-size);
     border: 1px solid var(--c-container);
     border-radius: var(--small-radius);
 }
 
-main.chatroom .chat ul li.me {
+main.chatroom ul li.me {
     margin-left: auto;
+}
+
+main.chatroom form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--medium-size);
+    width: 100%;
 }
 
 .avatar {
@@ -257,17 +266,31 @@ main.chatroom .chat ul li.me {
     height: fit-content;
 }
 
+main.chatroom form .emojis {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 1px;
+    border: 1px solid var(--c-container);
+    border-radius: var(--large-radius);
+    overflow: auto;
+}
+
+main.chatroom form .emojis li {
+    width: fit-content;
+}
+
+main.chatroom form .emojis li * {
+    all: unset;
+    font-size: var(--medium-size);
+}
+
+main.chatroom form .emojis li *:focus {
+    border: 2px solid #212121;
+}
+
 /*
 ===============================
 💻 QUERIES
 ===============================
 */
-
-@media only screen and (min-width: 1300px) {
-    main.chatroom {
-    grid-template-columns: 1fr .2fr;
-    }
-    main.chatroom .all-members {
-        display: block;
-    }
-}

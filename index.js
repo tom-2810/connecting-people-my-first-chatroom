@@ -41,6 +41,10 @@ ioServer.on('connection', (client) => {
   client.on('disconnect', () => {
     // Log de disconnect
     console.log(`user ${client.id} disconnected`)
+
+    let data = { client: client.id }
+
+    ioServer.emit('status', { ...data })
   })
 })
 

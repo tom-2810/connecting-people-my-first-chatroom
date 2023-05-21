@@ -2,6 +2,8 @@ let ioServer = io()
 let messages = document.querySelector('ul')
 let input = document.querySelector('input')
 
+let emojis = document.querySelectorAll('.emojis li button')
+
 // Luister naar het submit event
 document.querySelector('form').addEventListener('submit', (event) => {
   event.preventDefault()
@@ -21,6 +23,16 @@ ioServer.on('message', (message) => {
   addMessage(message)
 })
 
+// Luister naar status
+ioServer.on('status', (statusOfClient) => {
+  let disconnectedClient = statusOfClient.client;
+
+  document.querySelectorAll(`li#${disconnectedClient} .status`).forEach(messageStatus =>
+    messageStatus.classList.toggle('online')
+  )
+  console.log(disconnectedClient)
+})
+
 /**
  * Impure function that appends a new li item holding the passed message to the
  * global messages object and then scrolls the list to the last message.
@@ -35,15 +47,15 @@ function addMessage(message) {
   let hour = date.getHours().toString();
   let minute = date.getMinutes().toString();
 
-  if(hour.length == 1) hour = '0'+hour;
-  if(minute.length == 1) minute = '0'+minute;
+  if (hour.length == 1) hour = '0' + hour;
+  if (minute.length == 1) minute = '0' + minute;
 
   let time = hour + ':' + minute;
 
 
   messages.insertAdjacentHTML('beforeend',
     `
-    <li class="${message.client == ioServer.id ? "me" : ""}">
+    <li id="${message.client}" class="${message.client == ioServer.id ? "me" : ""}">
     <div class="avatar">
       <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -56,7 +68,7 @@ function addMessage(message) {
           d="M5.21539 25.0324C5.45619 21.3847 8.49139 18.5 12.2 18.5H17.8C21.5037 18.5 24.5361 21.377 24.7839 25.0177"
           stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
-      <div class="status" style="background-color: green;">
+      <div class="status online">
       </div>
     </div>
 
@@ -79,3 +91,13 @@ function addMessage(message) {
 
   messages.scrollTop = messages.scrollHeight
 }
+
+/**
+ * When emoji button is pressed it adds to input text for message
+ */
+
+emojis.forEach(emoji => {
+  emoji.addEventListener('click', () => {
+    input.value = input.value + emoji.innerHTML.toString();
+  })
+})
