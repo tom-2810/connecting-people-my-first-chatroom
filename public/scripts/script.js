@@ -43,7 +43,7 @@ function addMessage(message) {
 
   messages.insertAdjacentHTML('beforeend',
     `
-    <li class="me">
+    <li class="${message.client == ioServer.id ? "me" : ""}">
     <div class="avatar">
       <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -62,11 +62,11 @@ function addMessage(message) {
 
     <section class="message">
       <h2>
-        Ik
+      ${message.client == ioServer.id ? "Ik" : message.client}
       </h2>
 
       <p>
-        ${message}
+        ${message.message}
       </p>
       <div class="date-time">
         ${day}-${month}-${year} ${time}
@@ -77,9 +77,5 @@ function addMessage(message) {
     `
   )
 
-
-  // messages.appendChild(Object.assign(document.createElement('li'), { textContent: message }))
   messages.scrollTop = messages.scrollHeight
 }
-
-console.log("test")
