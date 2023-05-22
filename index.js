@@ -28,7 +28,7 @@ ioServer.on('connection', (client) => {
   // Luister naar een message van een gebruiker
   client.on('message', (message) => {
 
-    let data = { message: message, client: client.id }
+    let data = { message: message.message, username: message.username, client: client.id }
 
     // Log het ontvangen bericht
     console.log(`user ${client.id} sent message: ${data.message}`)

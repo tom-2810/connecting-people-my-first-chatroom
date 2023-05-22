@@ -1,6 +1,7 @@
 let ioServer = io()
 let messages = document.querySelector('ul')
-let input = document.querySelector('input')
+let usernameInput = document.querySelector('input[name="username"]')
+let messageInput = document.querySelector('input[name="message"]')
 
 let emojis = document.querySelectorAll('.emojis li button')
 
@@ -9,12 +10,13 @@ document.querySelector('form').addEventListener('submit', (event) => {
   event.preventDefault()
 
   // Als er überhaupt iets getypt is
-  if (input.value) {
+  if (messageInput.value) {
     // Stuur het bericht naar de server
-    ioServer.emit('message', input.value)
+    ioServer.emit('message', { message: messageInput.value, username: usernameInput.value })
 
     // Leeg het form field
-    input.value = ''
+    usernameInput.value = ''
+    messageInput.value = ''
   }
 })
 
@@ -74,7 +76,7 @@ function addMessage(message) {
 
     <section class="message">
       <h2>
-      ${message.client == ioServer.id ? "Ik" : message.client}
+      ${message.client == ioServer.id ? "Ik" : message.username}
       </h2>
 
       <p>
@@ -98,6 +100,6 @@ function addMessage(message) {
 
 emojis.forEach(emoji => {
   emoji.addEventListener('click', () => {
-    input.value = input.value + emoji.innerHTML.toString();
+    messageInput.value = messageInput.value + emoji.innerHTML.toString();
   })
 })
