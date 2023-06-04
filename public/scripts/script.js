@@ -1,7 +1,13 @@
 let ioServer = io()
 let messages = document.querySelector('ul')
 let usernameInput = document.querySelector('input[name="username"]')
+let avatarColorInput = document.querySelector('input[name="avatar-color"]')
 let messageInput = document.querySelector('input[name="message"]')
+
+// State messages
+const loadingState = document.querySelector('span.loading')
+const emptyState = document.querySelector('span.empty')
+const errorStateOffline = document.querySelector('span.error-offline')
 
 let emojis = document.querySelectorAll('.emojis li button')
 
@@ -12,17 +18,51 @@ document.querySelector('form').addEventListener('submit', (event) => {
   // Als er überhaupt iets getypt is
   if (messageInput.value) {
     // Stuur het bericht naar de server
-    ioServer.emit('message', { message: messageInput.value, username: usernameInput.value })
+    ioServer.emit('message', { message: messageInput.value, username: usernameInput.value, avatarColor: avatarColorInput.value })
 
     // Leeg het form field
-    usernameInput.value = ''
+    usernameInput.parentElement.setAttribute('hidden', '')
+    avatarColorInput.parentElement.setAttribute('hidden', '')
     messageInput.value = ''
+  }
+})
+
+// Luister naar de historie van de chat
+ioServer.on('history', (history) => {
+  // Als er geen historie is tonen we de empty state
+  if (history.length === 0) {
+    loadingState.style.display = 'none'
+    emptyState.style.display = 'flex'
+
+    // Er zijn berichten, haal de states weg en loop ze op het scherm
+  } else {
+    loadingState.style.display = 'none'
+    emptyState.style.display = 'none'
+    history.forEach((message) => {
+      addMessage(message)
+    })
   }
 })
 
 // Luister naar berichten van de server
 ioServer.on('message', (message) => {
+  loadingState.style.display = 'none'
+  emptyState.style.display = 'none'
   addMessage(message)
+})
+
+// Er gaat iets mis bij het verbinden
+ioServer.io.on('error', (error) => {
+  loadingState.style.display = 'none'
+  emptyState.style.display = 'none'
+  errorStateOffline.style.display = 'flex'
+})
+
+// Verbinding geslaagd
+ioServer.io.on('reconnect', (attempt) => {
+  loadingState.style.display = 'none'
+  emptyState.style.display = 'none'
+  errorStateOffline.style.display = 'none'
 })
 
 // Luister naar status
@@ -58,7 +98,7 @@ function addMessage(message) {
   messages.insertAdjacentHTML('beforeend',
     `
     <li id="${message.client}" class="${message.client == ioServer.id ? "me" : ""}">
-    <div class="avatar">
+    <div style="background-color: ${message.avatarColor}" class="avatar">
       <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M15 29C22.7322 29 29 22.7322 29 15C29 7.2678 22.7322 1 15 1C7.2678 1 1 7.2678 1 15C1 22.7322 7.2678 29 15 29Z"

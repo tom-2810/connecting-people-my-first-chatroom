@@ -9,6 +9,10 @@ const http = createServer(app)
 const ioServer = new Server(http)
 const port = process.env.PORT || 8000
 
+const historySize = 50
+
+let history = []
+
 // Serveer client-side bestanden
 app.set('view engine', 'ejs')
 app.set('views', './views')
@@ -25,10 +29,20 @@ ioServer.on('connection', (client) => {
   // Log de connectie naar console
   console.log(`user ${client.id} connected`)
 
+  // Stuur de history
+  client.emit('history', history)
+
   // Luister naar een message van een gebruiker
   client.on('message', (message) => {
 
-    let data = { message: message.message, username: message.username, client: client.id }
+    // Check de maximum lengte van de historie
+    while (history.length > historySize) {
+      history.shift()
+    }
+    // Voeg het toe aan de historie
+    history.push(message)
+
+    let data = { message: message.message, username: message.username, avatarColor: message.avatarColor, client: client.id }
 
     // Log het ontvangen bericht
     console.log(`user ${client.id} sent message: ${data.message}`)
