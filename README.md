@@ -1,8 +1,10 @@
 > _Fork_ deze leertaak en ga aan de slag. Onderstaande outline ga je gedurende deze taak in jouw eigen GitHub omgeving uitwerken. De instructie vind je in: [docs/INSTRUCTIONS.md](docs/INSTRUCTIONS.md)
 
+![vervoerregio_amsterdam_logo_darkmode 1](https://github.com/tom-2810/my-first-chatroom/assets/112861614/c045b22c-bd97-43c4-b844-e7c93721ce2c)
+
 # Vervoerregio Amsterdam Chatroom
 
-<!-- Geef je project een titel en schrijf in één zin wat het is -->
+Chatroom in de huisstijl van Vervoerregio Amsterdam
 
 ## Inhoudsopgave
 
