@@ -26,7 +26,7 @@
 
 :root {
     --default-width: 90vw;
-    --max-width: 95rem;
+    --max-width: 23rem;
     --small-size: .5rem;
     --medium-size: 1.2rem;
     --large-size: 1.7rem;
@@ -42,6 +42,8 @@
     --c-container: #E6E6E6;
     --c-huistijl-magenta: linear-gradient(123.52deg, var(--c-huisstijl-magenta-plain) 0%, #ff158e 100%);
     --c-huisstijl-magenta-plain: #eb004e;
+
+    --container-border: 1px solid var(--c-container)
 }
 
 /*
@@ -99,7 +101,7 @@ body {
     align-items: center;
     flex-direction: column;
     width: 100%;
-    height: 90vh;
+    height: 100dvh;
     /* gap: var(--xlarge-size); */
 }
 
@@ -110,8 +112,11 @@ main {
     align-items: center;
     width: var(--default-width);
     max-width: var(--max-width);
-    height: 100%;
+    height: 100dvh;
+    max-height: 50rem;
     gap: var(--medium-size);
+    border: var(--container-border);
+    padding: var(--small-size);
 }
 
 h2 {
@@ -164,41 +169,6 @@ h2 {
 ===============================
 */
 
-/* Header */
-
-header {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    padding: var(--small-size) 0;
-    border-bottom: 1px solid var(--c-container);
-}
-
-header .site-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: var(--default-width);
-    max-width: var(--max-width);
-}
-
-header .site-nav>a {
-    display: flex;
-    align-items: center;
-    height: fit-content;
-}
-
-header .site-nav>a img {
-    height: var(--xlarge-size);
-}
-
-header .site-nav nav {
-    display: flex;
-    flex-direction: row;
-    gap: var(--small-size);
-}
-
-header .site-nav nav>*,
 .avatar {
     display: flex;
     justify-content: center;
@@ -216,12 +186,10 @@ header .site-nav nav :is(img, svg),
     height: var(--medium-size);
 }
 
-header .site-nav nav svg,
 .avatar svg {
     filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.7));
 }
 
-header .site-nav nav .my-profile,
 .avatar {
     position: relative;
     background-color: #eb004e;
@@ -252,7 +220,7 @@ main.chatroom {
     flex-direction: column;
     width: var(--default-width);
     max-width: var(--max-width);
-    height: calc(100% - 3.35rem);
+    /* height: calc(100% - 3.35rem); */
 }
 
 main.chatroom ul {
