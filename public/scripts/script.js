@@ -121,10 +121,10 @@ function addMessage(message) {
 
     <section class="message">
       <h2>
-      ${message.client == ioServer.id ? "Ik" : message.username}
+      ${message.client == ioServer.id ? message.username + " (Ik)" : message.username}
       </h2>
 
-      <p>
+      <p style="border-color: ${message.avatarColor}">
         ${message.message}
       </p>
       <div class="date-time">
