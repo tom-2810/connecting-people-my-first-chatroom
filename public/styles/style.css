@@ -100,23 +100,8 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 100%;
     height: 100dvh;
     /* gap: var(--xlarge-size); */
-}
-
-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    width: var(--default-width);
-    max-width: var(--max-width);
-    height: 100dvh;
-    max-height: 50rem;
-    gap: var(--medium-size);
-    border: var(--container-border);
-    padding: var(--small-size);
 }
 
 h2 {
@@ -215,15 +200,46 @@ main.start form {
 
 /* Chatroom page */
 
-main.chatroom {
+.chatbox {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    max-height: 80dvh;
     display: flex;
     flex-direction: column;
-    width: var(--default-width);
-    max-width: var(--max-width);
-    /* height: calc(100% - 3.35rem); */
+    align-items: flex-end;
+    padding: var(--large-size);
+    overflow: hidden;
 }
 
-main.chatroom ul {
+#chatroom {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: var(--default-width);
+    max-width: var(--max-width);
+    gap: var(--medium-size);
+    border: var(--container-border);
+    padding: var(--small-size);
+
+    visibility: hidden;
+    transform: translateY(100vh);
+    height: 0;
+}
+
+#open-chat-button {}
+
+.appear {
+    animation: appear 1s forwards;
+}
+
+.disappear {
+    animation: disappear 1s forwards;
+}
+
+#chatroom ul {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -233,28 +249,28 @@ main.chatroom ul {
     scroll-behavior: smooth;
 }
 
-main.chatroom ul li {
+#chatroom ul li {
     display: flex;
     flex-direction: row;
     gap: var(--small-size);
-    width: 70%;
+    width: 90%;
 }
 
-main.chatroom ul li .message {
+#chatroom ul li .message {
     width: 100%;
 }
 
-main.chatroom ul li .message p {
+#chatroom ul li .message p {
     padding: var(--small-size);
     border: 1px solid var(--c-container);
     border-radius: var(--small-radius);
 }
 
-main.chatroom ul li.me {
+#chatroom ul li.me {
     margin-left: auto;
 }
 
-main.chatroom form {
+#chatroom form {
     display: flex;
     flex-direction: column;
     gap: var(--medium-size);
@@ -266,7 +282,21 @@ main.chatroom form {
     height: fit-content;
 }
 
-main.chatroom form .emojis {
+#chatroom form input:not(input[type="color"]), #chatroom form button {
+    height: var(--large-size);
+    padding: var(--small-size);
+    border-radius: var(--large-radius);
+    border: var(--container-border);
+}
+
+#chatroom form button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+}
+
+#chatroom form .emojis {
     display: flex;
     flex-direction: row;
     justify-content: start;
@@ -276,17 +306,27 @@ main.chatroom form .emojis {
     overflow: auto;
 }
 
-main.chatroom form .emojis li {
+#chatroom form .emojis li {
     width: fit-content;
 }
 
-main.chatroom form .emojis li * {
+#chatroom form .emojis li * {
     all: unset;
     font-size: var(--medium-size);
 }
 
-main.chatroom form .emojis li *:focus {
+#chatroom form .emojis li *:focus {
     border: 2px solid #212121;
+}
+
+#chatroom form .bericht {
+    display: flex;
+    flex-direction: row;
+    gap: var(--small-size);
+}
+
+#chatroom form .bericht input[name="message"] {
+    flex: 1;
 }
 
 /*
@@ -294,6 +334,13 @@ main.chatroom form .emojis li *:focus {
 💻 QUERIES
 ===============================
 */
+
+@media only screen and (max-width: 35rem) {
+    .chatbox {
+        padding: 0;
+        width: 100%;
+    }
+}
 
 /*
 ===============================
@@ -308,5 +355,31 @@ main.chatroom form .emojis li *:focus {
 
     100% {
         transform: rotate(360deg);
+    }
+}
+
+@keyframes appear {
+    0% {
+        visibility: hidden;
+        transform: translateY(100vh);
+        height: 0;
+    }
+
+    100% {
+        visibility: initial;
+        transform: translateY(0);
+        /* height: initial; */
+    }
+}
+
+@keyframes disappear {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        visibility: hidden;
+        transform: translateY(100vh);
+        height: 0;
     }
 }

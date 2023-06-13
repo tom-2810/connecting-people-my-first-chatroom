@@ -4,6 +4,11 @@ let usernameInput = document.querySelector('input[name="username"]')
 let avatarColorInput = document.querySelector('input[name="avatar-color"]')
 let messageInput = document.querySelector('input[name="message"]')
 
+let closeChatButton = document.querySelector('#close-chat-button')
+let openChatButton = document.querySelector('#open-chat-button')
+
+let chatroom = document.querySelector('#chatroom')
+
 // State messages
 const loadingState = document.querySelector('span.loading')
 const emptyState = document.querySelector('span.empty')
@@ -142,4 +147,20 @@ emojis.forEach(emoji => {
   emoji.addEventListener('click', () => {
     messageInput.value = messageInput.value + emoji.innerHTML.toString();
   })
+})
+
+openChatButton.addEventListener('click', () => {
+  openChatButton.classList.toggle('appear')
+  openChatButton.classList.toggle('disappear')
+
+  chatroom.classList.toggle('appear')
+  chatroom.classList.toggle('disappear')
+})
+
+closeChatButton.addEventListener('click', () => {
+  openChatButton.classList.toggle('appear')
+  openChatButton.classList.toggle('disappear')
+
+  chatroom.classList.toggle('appear')
+  chatroom.classList.toggle('disappear')
 })
