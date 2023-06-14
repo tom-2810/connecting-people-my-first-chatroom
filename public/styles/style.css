@@ -236,6 +236,9 @@ main.start form {
 
 #open-chat {
     position: relative;
+    /* opacity: 0; */
+    transform: translateX(100vw);
+    /* height: 0; */
 }
 
 #open-chat svg {
@@ -256,6 +259,8 @@ main.start form {
     color: white;
     font-size: var(--large-size);
     padding: var(--small-size) var(--xlarge-size);
+
+    cursor: pointer;
 }
 
 
