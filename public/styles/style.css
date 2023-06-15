@@ -39,7 +39,7 @@
     --c-schaduw: 0px 0px 40px rgba(0, 0, 0, 0.025);
     --c-schaduw-hover: 0px 0px 40px rgba(0, 0, 0, 0.075);
     --c-tekst: rgb(70, 70, 70);
-    --c-container: #E6E6E6;
+    --c-container: #cccccc;
     --c-huistijl-magenta: linear-gradient(123.52deg, var(--c-huisstijl-magenta-plain) 0%, #ff158e 100%);
     --c-huisstijl-magenta-plain: #eb004e;
 
@@ -102,6 +102,13 @@ body {
     flex-direction: column;
     height: 100dvh;
     /* gap: var(--xlarge-size); */
+}
+
+main {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
 }
 
 h2 {
@@ -200,19 +207,17 @@ main.start form {
 
 /* Chatroom page */
 
-.chatbox {
+#chatroom, #open-chat-button {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    max-height: 90dvh;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    padding: var(--large-size);
-    overflow: hidden;
+    transition: .3s;
+    visibility: hidden;
 }
 
-.chatroom {
+#chatroom {
+    transform: translateX(100%);
+    right: 0;
+    bottom: 0;
+
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -220,60 +225,65 @@ main.start form {
     align-items: center;
     width: var(--default-width);
     max-width: var(--max-width);
-    gap: var(--medium-size);
+    height: 100%;
+    max-height: 45rem;
+    /* gap: var(--medium-size); */
     border: var(--container-border);
     padding: var(--small-size);
     border-radius: var(--small-radius);
+    background-color: var(--c-achtergrond);
 
-    opacity: 0;
-    transform: translateX(100vw);
-    height: 0;
+    overflow: hidden;
+    z-index: 1;
+}
+
+#close-chat-button, #open-chat-button, #chatroom form button {
+    cursor: pointer;
+}
+
+#close-chat-button:hover, #open-chat-button:hover {
+    opacity: .8;
 }
 
 #close-chat-button {
-
-}
-
-#open-chat {
-    position: relative;
-    /* opacity: 0; */
-    transform: translateX(100vw);
-    /* height: 0; */
-}
-
-#open-chat svg {
-    position: absolute;
-    top: -1rem;
-    right: -1rem;
-}
-
-#open-chat svg path {
-    border: 2px solid white;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--small-size);
+    border: none;
+    border-radius: 50%;
+    background-color: #ff0055;
 }
 
 #open-chat-button {
+    transform: translateX(100%);
+    right: 1rem;
+    bottom: 1rem;
+
     background-color: #ff0055;
     border: none;
     border-radius: var(--small-radius);
     color: white;
     font-size: var(--large-size);
     padding: var(--small-size) var(--xlarge-size);
-
-    cursor: pointer;
 }
-
-
 
 .appear {
-    opacity: 1;
-    transition: .3s;
-    animation: appear .5s forwards;
+    visibility: visible !important;
+    transform: translateX(0) !important;
 }
 
-.disappear {
-    transition: .3s;
-    animation: disappear .5s forwards;
+#chatroom .chatroom-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+#chatroom .chatroom-header .title {
+    display: flex;
+    flex-direction: column;
 }
 
 #chatroom ul {
@@ -284,6 +294,14 @@ main.start form {
     gap: var(--large-size);
     overflow: auto;
     scroll-behavior: smooth;
+
+    border-top: var(--container-border);
+    border-bottom: var(--container-border);
+}
+
+#chatroom ul:not(form ul) {
+    margin: var(--small-size) 0;
+    padding: var(--small-size) 0;
 }
 
 #chatroom ul li {
@@ -310,18 +328,14 @@ main.start form {
 }
 
 #chatroom ul li.me p {
-    border-width: 4px;
+    border-width: 2px;
 }
 
 #chatroom form {
     display: flex;
     flex-direction: column;
-    gap: var(--medium-size);
+    gap: var(--small-size);
     width: 100%;
-}
-
-#chatroom form * {
-    font-size: var(--medium-size);
 }
 
 .avatar {
@@ -334,8 +348,10 @@ main.start form {
     padding: var(--small-size);
     border-radius: var(--large-radius);
     border: var(--container-border);
+}
 
-
+#chatroom form input[type="color"] {
+    cursor: pointer;
 }
 
 #chatroom form button {
@@ -376,6 +392,28 @@ main.start form {
 
 #chatroom form .bericht input[name="message"] {
     flex: 1;
+}
+
+#chatroom form .bericht button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff0055;
+}
+
+#chatroom form .bericht button * {
+    color: white;
+    font-weight: bold;
+}
+
+#chatroom ul::-webkit-scrollbar, #chatroom .emojis::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+}
+
+#chatroom ul::-webkit-scrollbar-thumb, #chatroom .emojis::-webkit-scrollbar-thumb {
+    background-color: #ff00559e;
+    border-radius: var(--medium-radius);
 }
 
 /*

@@ -7,8 +7,6 @@ let messageInput = document.querySelector('input[name="message"]')
 let closeChatButton = document.querySelector('#close-chat-button')
 let openChatButton = document.querySelector('#open-chat-button')
 
-let openChat = document.querySelector('#open-chat')
-
 let chatroom = document.querySelector('#chatroom')
 
 // State messages
@@ -152,17 +150,11 @@ emojis.forEach(emoji => {
 })
 
 openChatButton.addEventListener('click', () => {
-  openChat.classList.toggle('appear')
-  openChat.classList.toggle('disappear')
-
   chatroom.classList.toggle('appear')
-  chatroom.classList.toggle('disappear')
+  openChatButton.classList.toggle('appear')
 })
 
 closeChatButton.addEventListener('click', () => {
-  openChat.classList.toggle('appear')
-  openChat.classList.toggle('disappear')
-
   chatroom.classList.toggle('appear')
-  chatroom.classList.toggle('disappear')
+  openChatButton.classList.toggle('appear')
 })
