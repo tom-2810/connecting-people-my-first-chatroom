@@ -1,0 +1,486 @@
+/*
+===============================
+📜 FONTS
+===============================
+*/
+
+@font-face {
+    font-family: "Fira Sans Medium";
+    font-style: normal;
+    font-weight: normal;
+    src: url(/fonts/FiraSans-Medium.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Fira Sans Regular";
+    font-style: normal;
+    font-weight: normal;
+    src: url(/fonts/FiraSans-Regular.ttf) format("truetype");
+}
+
+/*
+===============================
+✨ VARIABLES
+===============================
+*/
+
+:root {
+    --default-width: 90vw;
+    --max-width: 23rem;
+    --small-size: .5rem;
+    --medium-size: 1.2rem;
+    --large-size: 1.7rem;
+    --xlarge-size: 3rem;
+    --xxlarge-size: 8rem;
+    --small-radius: 5px;
+    --medium-radius: 10px;
+    --large-radius: 20px;
+    --c-achtergrond: #ffffff;
+    --c-schaduw: 0px 0px 40px rgba(0, 0, 0, 0.025);
+    --c-schaduw-hover: 0px 0px 40px rgba(0, 0, 0, 0.075);
+    --c-tekst: rgb(70, 70, 70);
+    --c-container: #cccccc;
+    --c-huistijl-magenta: linear-gradient(123.52deg, var(--c-huisstijl-magenta-plain) 0%, #ff158e 100%);
+    --c-huisstijl-magenta-plain: #eb004e;
+
+    --container-border: 1px solid var(--c-container)
+}
+
+/*
+===============================
+🌓 DARK-MODE
+===============================
+*/
+
+[data-theme="dark"] {
+    --c-achtergrond: #212121;
+    --c-header-achtergrond: #2C2C2C;
+    --c-tekst: #ffffff;
+    --c-huisstijl-magenta-plain: #ff0055;
+}
+
+/*
+===============================
+🐪 DRY CODE
+===============================
+*/
+
+:is(.my-profile, .avatar) .status {
+    box-sizing: content-box;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: var(--small-size);
+    height: var(--small-size);
+    border: 2px solid var(--c-achtergrond);
+    border-radius: 50%;
+    z-index: 2;
+}
+
+/*
+===============================
+💪 DEFAULT STYLING
+===============================
+*/
+
+html {
+    scroll-behavior: smooth;
+    font-family: Fira Sans Medium;
+}
+
+* {
+    scroll-margin: 23rem;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: var(--c-tekst);
+}
+
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100dvh;
+    /* gap: var(--xlarge-size); */
+}
+
+main {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+h2 {
+    font-size: var(--medium-size);
+}
+
+.status {
+    background-color: red;
+}
+
+.online {
+    background-color: green;
+}
+
+/*
+===============================
+🤖 UI States
+===============================
+*/
+
+.state {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+    max-width: 30rem;
+    text-wrap: balance;
+    
+    padding: var(--medium-size);
+    border: var(--container-border);
+    border-color: transparent;
+    border-radius: var(--small-radius);
+}
+
+.loading {
+    display: flex;
+    flex-direction: column;
+}
+
+.loading svg {
+    animation: rotate .6s infinite;
+}
+
+.empty {
+    display: none;
+    border-color: blue;
+}
+
+.error-offline {
+    display: none;
+    border-color: red;
+}
+
+/*
+===============================
+🧩 PARTIALS
+===============================
+*/
+
+.avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--c-container);
+    border-radius: 50%;
+    background-color: var(--c-achtergrond);
+}
+
+header .site-nav nav :is(img, svg),
+.avatar svg {
+    box-sizing: content-box;
+    padding: var(--small-size);
+    width: var(--medium-size);
+    height: var(--medium-size);
+}
+
+.avatar svg {
+    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.7));
+}
+
+.avatar {
+    position: relative;
+    background-color: #eb004e;
+}
+
+/*
+===============================
+📄 PAGES
+===============================
+*/
+
+/* Start page */
+
+main.start form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: var(--medium-size);
+    gap: var(--medium-size);
+    border: 1px solid var(--c-container);
+    border-radius: var(--small-radius);
+}
+
+/* Chatroom page */
+
+#chatroom, #open-chat-button {
+    position: absolute;
+    transition: .3s;
+    visibility: hidden;
+}
+
+#chatroom {
+    transform: translateX(100%);
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: var(--default-width);
+    max-width: var(--max-width);
+    height: 100%;
+    max-height: 45rem;
+    /* gap: var(--medium-size); */
+    border: var(--container-border);
+    padding: var(--small-size);
+    border-radius: var(--small-radius);
+    background-color: var(--c-achtergrond);
+
+    overflow: hidden;
+    z-index: 1;
+}
+
+#close-chat-button, #open-chat-button, #chatroom form button {
+    cursor: pointer;
+}
+
+#close-chat-button:hover, #open-chat-button:hover {
+    opacity: .8;
+}
+
+#close-chat-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--small-size);
+    border: none;
+    border-radius: 50%;
+    background-color: #ff0055;
+}
+
+#open-chat-button {
+    transform: translateX(100%);
+    right: 1rem;
+    bottom: 1rem;
+
+    background-color: #ff0055;
+    border: none;
+    border-radius: var(--small-radius);
+    color: white;
+    font-size: var(--large-size);
+    padding: var(--small-size) var(--xlarge-size);
+}
+
+.appear {
+    visibility: visible !important;
+    transform: translateX(0) !important;
+}
+
+#chatroom .chatroom-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+#chatroom .chatroom-header .title {
+    display: flex;
+    flex-direction: column;
+}
+
+#chatroom ul {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 1;
+    list-style: none;
+    gap: var(--large-size);
+    overflow: auto;
+    scroll-behavior: smooth;
+
+    border-top: var(--container-border);
+    border-bottom: var(--container-border);
+}
+
+#chatroom ul:not(form ul) {
+    margin: var(--small-size) 0;
+    padding: var(--small-size) 0;
+}
+
+#chatroom ul li {
+    display: flex;
+    flex-direction: row;
+    gap: var(--small-size);
+    width: 95%;
+}
+
+#chatroom ul li .message {
+    width: 100%;
+}
+
+#chatroom ul li .message p {
+    padding: var(--small-size);
+    border: 1px solid var(--c-container);
+    border-radius: var(--small-radius);
+
+    font-size: var(--medium-size);
+}
+
+#chatroom ul li.me {
+    margin-left: auto;
+}
+
+#chatroom ul li.me p {
+    border-width: 2px;
+}
+
+#chatroom form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--small-size);
+    width: 100%;
+}
+
+.avatar {
+    width: fit-content;
+    height: fit-content;
+}
+
+#chatroom form input:not(input[type="color"]), #chatroom form button {
+    height: var(--large-size);
+    padding: var(--small-size);
+    border-radius: var(--large-radius);
+    border: var(--container-border);
+}
+
+#chatroom form input[type="color"] {
+    cursor: pointer;
+}
+
+#chatroom form button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+}
+
+#chatroom form .emojis {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 1px;
+    border: 1px solid var(--c-container);
+    border-radius: var(--large-radius);
+    overflow: auto;
+}
+
+#chatroom form .emojis li {
+    width: fit-content;
+}
+
+#chatroom form .emojis li * {
+    all: unset;
+    font-size: var(--large-size);
+}
+
+#chatroom form .emojis li *:focus {
+    border: 2px solid #212121;
+}
+
+#chatroom form .bericht {
+    display: flex;
+    flex-direction: row;
+    gap: var(--small-size);
+}
+
+#chatroom form .bericht input[name="message"] {
+    flex: 1;
+}
+
+#chatroom form .bericht button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff0055;
+}
+
+#chatroom form .bericht button * {
+    color: white;
+    font-weight: bold;
+}
+
+#chatroom ul::-webkit-scrollbar, #chatroom .emojis::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+}
+
+#chatroom ul::-webkit-scrollbar-thumb, #chatroom .emojis::-webkit-scrollbar-thumb {
+    background-color: #ff00559e;
+    border-radius: var(--medium-radius);
+}
+
+/*
+===============================
+💻 QUERIES
+===============================
+*/
+
+@media only screen and (max-width: 35rem) {
+    .chatbox {
+        padding: 0;
+        width: 100%;
+    }
+
+    #chatroom {
+        width: 100%;
+    }
+}
+
+/*
+===============================
+💻 ANIMATIONs
+===============================
+*/
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes appear {
+    0% {
+        visibility: hidden;
+        transform: translateX(100vw);
+        height: 0;
+    }
+
+    100% {
+        visibility: initial;
+        transform: translateX(0);
+        visibility: visible;
+        /* height: initial; */
+    }
+}
+
+@keyframes disappear {
+    0% {
+        transform: translateX(0);
+        visibility: visible;
+    }
+
+    100% {
+        visibility: hidden;
+        transform: translateX(100vw);
+        height: 0;
+    }
+}
