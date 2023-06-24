@@ -30,6 +30,7 @@ Klik rechtsonder op de knop "Chat".
 Vul een naam in, kies een avatar kleur en type je bericht. Verstuur dit bericht en alle gebruikers zullen dit ontvangen.
 Nadat je je eerste bericht heb verstuurd hoef je alleen nog maar een je berichtje in te vullen, waarmee je naam en avatar worden meegegeven.
 Als iemand de chatroom verlaat zie je dit aan het rode status bolletje bij een avatar.
+EN CHATTEN MAARRR 💬💬💬
 
 ## Kenmerken
 
