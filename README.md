@@ -18,11 +18,15 @@ Chatroom in de huisstijl van Vervoerregio Amsterdam
 
 De chatroom is opgemaakt aan de hand van de huisstijl van Vervoerregio Amsterdam.
 
-![image](https://github.com/tom-2810/my-first-chatroom/assets/112861614/64b15f26-7ec6-4bd5-bb2f-62f135979729)
+![image](https://github.com/tom-2810/my-first-chatroom/assets/112861614/6e298476-d095-4542-bfe6-7f8241ee0c4f)
+
 
 🌐 https://tom-2810-my-first-chatroom.adaptable.app/
 
 ## Gebruik
+
+Klik rechtsonder op de knop "Chat".
+![image](https://github.com/tom-2810/my-first-chatroom/assets/112861614/fbdf481b-6802-439f-af31-85e9eece0141)
 
 Vul een naam in, kies een avatar kleur en type je bericht. Verstuur dit bericht en alle gebruikers zullen dit ontvangen.
 Nadat je je eerste bericht heb verstuurd hoef je alleen nog maar een je berichtje in te vullen, waarmee je naam en avatar worden meegegeven.
