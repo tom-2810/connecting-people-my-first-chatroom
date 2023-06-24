@@ -19,7 +19,7 @@ De chatroom is opgemaakt aan de hand van de huisstijl van Vervoerregio Amsterdam
 ![image](https://github.com/tom-2810/my-first-chatroom/assets/112861614/6e298476-d095-4542-bfe6-7f8241ee0c4f)
 
 
-🌐 https://tom-2810-my-first-chatroom.adaptable.app/
+🌐 https://tom-2810-chatroom.adaptable.app/
 
 ## Gebruik
 
